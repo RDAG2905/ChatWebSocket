@@ -54,17 +54,23 @@
   <h2>Centro de Mensajes</h1>
   <br>
 
-  <input type="text" id="inputUsername" class="form-control input-xs" placeholder="Ingresá tu email">
-
+  <input type="text" id="inputUsername" class="form-control input-xs" placeholder="Ingresá tu email" onblur="verificar()">
+  <div style="display:none" class="alert-danger" id="showAlert">Formato de Email inválido.</div>
   <hr>
 
   <table id="mensajes" style="margin-left:10%;margin-right:10% ;"></table>
-
-  <form id="formPublicarMensaje" class="form-inline" autocomplete="off">
-      <div class="form-group">
-          <input  id="inputMensaje" type="text" class="form-control input-xs"
-              placeholder="Ingresá un mensaje...">
-          <button  id="btnEnviar" type="button" class="btn btn-primary my-2" onclick="enviarChat()">Enviar!</button>
+<br>
+  <form id="formPublicarMensaje"  autocomplete="off">
+      <div class="row">
+        <div class="col-xs-6">
+          <input disabled id="inputMensaje" type="text" class="form-control input-xs"
+          placeholder="Ingresá un mensaje..." oninput="validarMensaje()">
+        </div>
+        <div class="col-xs-3">
+          <button disabled id="btnEnviar" type="button" class="btn btn-primary" onclick="enviarChat()">Enviar</button>
+        </div>
+         
+          
       </div>
   </form>
 </div>

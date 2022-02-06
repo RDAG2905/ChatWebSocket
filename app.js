@@ -29,13 +29,11 @@ app.use(express.static('public'));
                 .then(id => 
                     daoChat.getAll()
                         .then(chats => {                    
-                            io.sockets.emit('mensajes',JSON.parse(chats) ) }))
-                        //.catch(e=> console.log(e)))
+                        io.sockets.emit('mensajes',JSON.parse(chats) ) }))
+                       
                 .catch(e=>
                 console.log(e))
-                
-                        
-                      // io.sockets.emit('mensajes',JSON.parse(await daoChat.getAll()))
+                      
         })
           
     })

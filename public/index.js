@@ -38,20 +38,7 @@ const renderProducts = (productos) =>{
             document.querySelector('#lista').innerHTML = html
         })
 }
- /*
-function makeHtmlList(mensajes) {
-  console.log(mensajes)
-  return mensajes.map(mensaje => {
-      return (`
-          <div>
-              <b style="color:blue;">${mensaje.autor}</b>
-              [<span style="color:brown;">${mensaje.fyh}</span>] :
-              <i style="color:green;">${mensaje.texto}</i>
-          </div>
-      `)
-  }).join(" ");
-}
-*/
+ 
 
 function makeHtmlList(mensajes) {
  
@@ -61,9 +48,9 @@ function makeHtmlList(mensajes) {
    mensajes.forEach(mensaje => {
       let msg = (`
           <tr style='width:400px;height:50px;'>
-              <td style="color:blue;">${mensaje.autor}</td>
-              <td style="color:brown;">[${mensaje.fyh}]:</td>
-              <td style="color:green;">${mensaje.texto}</td>
+              <td style="color:blue;width:50px;">${mensaje.autor}</td>
+              <td style="color:brown;width:60px;text-align:left">[${mensaje.fyh}]:</td>
+              <td style="color:green;text-align:left">${mensaje.texto}</td>
           </tr>
       `)
       lista.push(msg)
@@ -85,6 +72,44 @@ const enviarChat=()=>{
   texto
   }
   socket.emit("chateando",chat)
+}
+
+
+function isValidEmail(mail) { 
+  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail); 
+}
+
+function isValidInput(input){
+ return input.length > 0
+}
+
+const verificar = ()=>{
+  let valor = document.querySelector('#inputUsername').value
+  let cartel = document.querySelector('#showAlert')
+  let inputMensaje = document.querySelector('#inputMensaje')
+  let btnEnviar = document.querySelector('#btnEnviar')
+  if(isValidEmail(valor) ){
+    cartel.style.display = 'none'  
+    inputMensaje.disabled = false
+    btnEnviar.disabled = false
+  }else{
+    cartel.style.display = 'block'
+    inputMensaje.disabled = true
+    btnEnviar.disabled = true
+  }
+  
+}
+const showError= ()=> {}
+const hideError= ()=> {}
+  
+
+const validarMensaje = ()=>{
+  let inputMensaje = document.querySelector('#inputMensaje')
+  if(isValidInput(inputMensaje.value)){
+    btnEnviar.disabled = false
+  }else{
+    btnEnviar.disabled = true
+  }
 }
 /*
 inputUsername.addEventListener('input', () => {
